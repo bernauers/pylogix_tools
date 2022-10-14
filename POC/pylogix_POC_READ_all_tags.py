@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from pylogix import PLC
 with PLC() as comm:
     print("Enter PLC IPv4 address to read tags from")
