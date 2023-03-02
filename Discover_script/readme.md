@@ -1,12 +1,12 @@
-# PLC Discovery and Audit Tool
+# PLC Discovery and Audit Script
 
-The PLC Discovery and Audit tool is a python based script, utilizing the [pylogix](https://github.com/dmroeder/pylogix) library, as a communication driver to discover Rockwell devices on the network and perform an audit of the rack. 
+The PLC Discovery and Audit script is a python based script, utilizing the [pylogix](https://github.com/dmroeder/pylogix) library, as a communication driver to discover Rockwell devices on the network and perform an audit of the rack. 
 
 -----
 
 ## Capabilities
 
-The discovery and audit script can be run to discover rockwell devices on the network. The script will than use the discovered devices IP and audit the racks to provided detailed information about said devices. 
+The discovery and audit script scans the network to discover rockwell devices. The script will use the discovered devices IP and audit the chassis to provided detailed information about said devices. 
 
 -----
 
@@ -30,13 +30,13 @@ The discovery and audit script can be run to discover rockwell devices on the ne
 ![](images/python_requirements.png)
     
 ### Running
-To run the program and start the tool complete one of the following. 
+To run the script use one of the following. 
     
 1. From the file explorer "shift" + "right click" and select <i> Open with PowerShell here.</i>
     
 2. Double click the python file - This requires the install now option to be selected while installing, and python being added to PATH. 
 
-The script will run without user inpur required.
+The script runs without user inpur required.
 
 ### Output
 Once the script has run, the output of the script will be saved into a respective excel sheets and saved to the hosts desktop. 

@@ -33,22 +33,23 @@ def devices():
             device_df = pd.DataFrame(device_data)
         return device_df
         
-def modules():
+def modules(ip):
     with PLC() as comm:
-        for a in iplist:
-                comm.IPAddress = a
-                for i in range(17):
-                    try:
-                        #try different slots and get module properties using the discovered ips
-                        prop = comm.GetModuleProperties(i)
-                        #filter out the slots with nothing
-                        if prop.Value.ProductName == None:
-                            pass
-                        else:
-                            #add the data to a list
-                            module_data.append({'IPAddress': a, 'Slot': i, 'ProductName': prop.Value.ProductName, 'Revision': prop.Value.Revision})
-                    except:
-                        print("An error occured.")
+        comm.IPAddress = ip
+        
+        for i in range(17):
+            try:
+                #try different slots and get module properties using the discovered ips
+                prop = comm.GetModuleProperties(i)
+                #filter out the slots with nothing
+                if prop.Value.ProductName == None:
+                    pass
+                else:
+                    #add the data to a list
+                    module_data.append({'IPAddress': a, 'Slot': i, 'ProductName': prop.Value.ProductName, 'Revision': prop.Value.Revision})
+            except:
+                print("An error occured.")
+
         #return a dataframe with module data list
         module_df = pd.DataFrame(module_data)
         #convert revision from being stored as text to a float
@@ -57,8 +58,10 @@ def modules():
 
 if __name__ == '__main__':
     device_df = devices()
-    module_df = modules()
     
+    for a in iplist:
+        module_df = modules(a)
+
     #write the dataframes from above to an excel file
     with pd.ExcelWriter(os.path.join(desktop,'plc_data.xlsx')) as writer:
         device_df.to_excel(writer, sheet_name = "Devices", index = False)
